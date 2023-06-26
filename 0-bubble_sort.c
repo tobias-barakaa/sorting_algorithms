@@ -1,31 +1,39 @@
 #include "sort.h"
 
 /**
- * bubble_sort - sorts an array of integers in ascending order using
- *  the Bubble sort algorithm
- * @array: array to sort
- * @size: length of the array
- * Return: Nothing
+ * bubble_sort - algo sort for bubble
+ * @array: array
+ * @size: size
+ * Return: return void func
  */
 void bubble_sort(int *array, size_t size)
 {
-	int i, tmp = 0, n = size;
+	int new;
+	int comp;
+	size_t k, i;
 
 	if (array == NULL || size < 2)
+     {
 		return;
+     }
 
-	while (n > 0)
+	for (k = size; k >= 2; k--)
 	{
-		for (i = 0; i < (int)size - 1; i++)
+		comp = 0;
+		for (i = 1; i < k; i++)
 		{
-			if (array[i] > array[i + 1])
+			if (array[i - 1] > array[i])
 			{
-				tmp = array[i + 1];
-				array[i + 1] = array[i];
-				array[i] = tmp;
+				comp = 1;
+				new = array[i];
+				array[i] = array[i - 1];
+				array[i - 1] = new;
 				print_array(array, size);
 			}
 		}
-		n--;
+		if (comp == 0)
+          {
+			return;
+          }
 	}
 }

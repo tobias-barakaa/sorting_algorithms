@@ -1,40 +1,40 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "sort.h"
 
 /**
- * bubble_sort - Sorts an array of integers in ascending order using Bubble sort
- * @array: The array to be sorted
- * @size: The size of the array
- * Return: return void
- */
+*bubble_sort - algorithm function to print bubble-sort
+*@array: array
+*@size: size 
+*Return: return void
+*/
+
 void bubble_sort(int *array, size_t size)
 {
-    size_t i, j;
-    int curr;
-    int new;
+	int new;
+	short comp;
+	size_t k, i;
 
-    if (array == NULL || size < 2)
-    {
-        return;
-    }
+	if (size < 2)
+     {
+		return;
+     }
 
-    for (i = 0; i < size; i++)
-    {
-        new = 0;
-        for (j = 0; j < size - i - 1; j++)
-        {
-            if (array[j] > array[j + 1])
-            {
-                curr = array[j];
-                array[j] = array[j + 1];
-                array[j + 1] = curr;
-                new = 1;
-                print_array(array, size);
-            }
-        }
-        if (!new == 0)
-            break;
-    }
+	for (k = size; k >= 2; k--)
+	{
+		for (i = 1; i < k; i++)
+		{
+			comp = 1;
+			if (array[i - 1] > array[i])
+			{
+				comp = 0;
+				new = array[i];
+				array[i] = array[i - 1];
+				array[i - 1] = new;
+				print_array(array, size);
+			}
+		}
+		if (comp)
+          {
+			return;
+          }
+	}
 }
-

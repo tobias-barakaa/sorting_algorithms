@@ -1,47 +1,44 @@
 #include "sort.h"
 
 /**
- * insertion_sort_list - insertion algorithm in C
- * @list: list
+ * insertion_sort_list - insertion algorithm
+ * @list: list array
  * Return: void
  */
 void insertion_sort_list(listint_t **list)
 {
-    if (list == NULL || *list == NULL || (*list)->next == NULL)
-    {
-        return;
-    }
+	listint_t *now, *num_swap, *back;
 
-    listint_t *new, *data;
+	if (!list || !*list)
+     {
+		return;
+     }
 
-    new = (*list)->next;
-    while (new != NULL)
-    {
-        data = new;
-        while (data->prev != NULL && data->n < data->prev->n)
-        {
-            /* Swap the nodes */
-            data->prev->next = data->next;
-            if (data->next != NULL)
-            {
-                data->next->prev = data->prev;
-            }
-            data->next = data->prev;
-            data->prev = data->prev->prev;
-            data->next->prev = data;
+	now = *list;
+	while ((now = now->next))
+	{
+		num_swap = now;
+		while (num_swap->prev && num_swap->n < num_swap->prev->n)
+		{
+			back = num_swap->prev;
+			if (num_swap->next)
+               {
+				num_swap->next->prev = back;
+               }
+			if (back->prev)
+               {
+				back->prev->next = num_swap;
+               }
+			else
+               {
+				*list = num_swap;
+               }
+			back->next = num_swap->next;
+			num_swap->prev = back->prev;
+			num_swap->next = back;
+			back->prev = num_swap;
 
-            if (data->prev == NULL)
-            {
-                *list = data;
-            }
-            else
-            {
-                data->prev->next = data;
-            }
-
-            print_list(*list);  
-
-        }
-        new = new->next;
-    }
+			print_list(*list);
+		}
+	}
 }

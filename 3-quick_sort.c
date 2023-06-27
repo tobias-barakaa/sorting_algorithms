@@ -3,8 +3,8 @@
 /**
  * separate - array separate
  * @array: array to sort
- * @beginn: beginn 
- * @end: end 
+ * @beginn: beginn
+ * @end: end
  * @size: array size
  * Return: int between index
  */
@@ -40,8 +40,8 @@ int separate(int *array, int beginn, int end, size_t size)
 /**
  * sort_qui - recurse_sort
  * @array: array to sort
- * @beginn: beginn 
- * @end: end 
+ * @beginn: beginn
+ * @end: end
  * @size:size
  * Return: void
  */
